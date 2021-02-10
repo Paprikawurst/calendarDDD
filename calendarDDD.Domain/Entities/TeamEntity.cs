@@ -1,10 +1,8 @@
-﻿using calendarDDD.Domain.Interfaces;
+﻿using System;
+using calendarDDD.Domain.Entities.Base;
 using calendarDDD.Domain.Shared;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace calendarDDD.Domain.AggregateModels.UserAggregate
+namespace calendarDDD.Domain.Entities.Entities
 {
     public class TeamEntity : IEntity
     {

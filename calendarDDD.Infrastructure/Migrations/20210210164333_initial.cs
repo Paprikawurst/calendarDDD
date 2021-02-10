@@ -1,12 +1,27 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace calendarDDD.Infrastructure.Migrations.UserDb
+namespace calendarDDD.Infrastructure.Migrations
 {
-    public partial class Init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ProductEntity",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Price = table.Column<double>(type: "REAL", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductEntity", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "TeamEntity",
                 columns: table => new
@@ -39,21 +54,6 @@ namespace calendarDDD.Infrastructure.Migrations.UserDb
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.InsertData(
-                table: "UserEntity",
-                columns: new[] { "Id", "PreName", "SurName", "TeamId" },
-                values: new object[] { new Guid("fc781a75-9cf3-49b9-b273-80c577bd2ba3"), "Hans", "Müller", null });
-
-            migrationBuilder.InsertData(
-                table: "UserEntity",
-                columns: new[] { "Id", "PreName", "SurName", "TeamId" },
-                values: new object[] { new Guid("20ff1e9b-cf1d-4dd1-ac43-f0a0568b336f"), "Maria", "Schmidt", null });
-
-            migrationBuilder.InsertData(
-                table: "UserEntity",
-                columns: new[] { "Id", "PreName", "SurName", "TeamId" },
-                values: new object[] { new Guid("63b8cd3d-0000-4f22-8eb0-c46833c647e4"), "Peter", "Fischer", null });
-
             migrationBuilder.CreateIndex(
                 name: "IX_UserEntity_TeamId",
                 table: "UserEntity",
@@ -62,6 +62,9 @@ namespace calendarDDD.Infrastructure.Migrations.UserDb
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ProductEntity");
+
             migrationBuilder.DropTable(
                 name: "UserEntity");
 

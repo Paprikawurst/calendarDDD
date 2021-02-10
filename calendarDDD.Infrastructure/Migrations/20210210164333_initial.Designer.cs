@@ -2,21 +2,46 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using calendarDDD.Infrastructure;
+using calendarDDD.Infrastructure.Context;
 
-namespace calendarDDD.Infrastructure.Migrations.UserDb
+namespace calendarDDD.Infrastructure.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MyContext))]
+    [Migration("20210210164333_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("calendarDDD.Domain.AggregateModels.UserAggregate.TeamEntity", b =>
+            modelBuilder.Entity("calendarDDD.Domain.Entities.Entities.ProductEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductEntity");
+                });
+
+            modelBuilder.Entity("calendarDDD.Domain.Entities.Entities.TeamEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,7 +55,7 @@ namespace calendarDDD.Infrastructure.Migrations.UserDb
                     b.ToTable("TeamEntity");
                 });
 
-            modelBuilder.Entity("calendarDDD.Domain.AggregateModels.UserAggregate.UserEntity", b =>
+            modelBuilder.Entity("calendarDDD.Domain.Entities.Entities.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,31 +75,11 @@ namespace calendarDDD.Infrastructure.Migrations.UserDb
                     b.HasIndex("TeamId");
 
                     b.ToTable("UserEntity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("fc781a75-9cf3-49b9-b273-80c577bd2ba3"),
-                            PreName = "Hans",
-                            SurName = "Müller"
-                        },
-                        new
-                        {
-                            Id = new Guid("20ff1e9b-cf1d-4dd1-ac43-f0a0568b336f"),
-                            PreName = "Maria",
-                            SurName = "Schmidt"
-                        },
-                        new
-                        {
-                            Id = new Guid("63b8cd3d-0000-4f22-8eb0-c46833c647e4"),
-                            PreName = "Peter",
-                            SurName = "Fischer"
-                        });
                 });
 
-            modelBuilder.Entity("calendarDDD.Domain.AggregateModels.UserAggregate.UserEntity", b =>
+            modelBuilder.Entity("calendarDDD.Domain.Entities.Entities.UserEntity", b =>
                 {
-                    b.HasOne("calendarDDD.Domain.AggregateModels.UserAggregate.TeamEntity", "Team")
+                    b.HasOne("calendarDDD.Domain.Entities.Entities.TeamEntity", "Team")
                         .WithMany()
                         .HasForeignKey("TeamId");
 

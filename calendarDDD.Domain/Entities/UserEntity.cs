@@ -1,9 +1,9 @@
 ﻿using System;
-using calendarDDD.Domain.Interfaces;
+using calendarDDD.Domain.Entities.Base;
 
-namespace calendarDDD.Domain.AggregateModels.UserAggregate
+namespace calendarDDD.Domain.Entities.Entities
 {
-    public class UserEntity : IEntity, IAggregateRoot
+    public class UserEntity : IEntity
     {
         public Guid Id { get; set; }
         public string PreName { get; set; }

@@ -1,9 +1,7 @@
-﻿using calendarDDD.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using calendarDDD.Domain.Entities.Base;
 
-namespace calendarDDD.Domain.AggregateModels.ProductAggregate
+namespace calendarDDD.Domain.Entities.Entities
 {
     public class ProductEntity : IEntity
     {

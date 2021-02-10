@@ -1,4 +1,5 @@
-using calendarDDD.Infrastructure;
+using calendarDDD.Infrastructure.Context;
+using calendarDDD.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace calendarDDD
+namespace calendarDDD.Web
 {
     public class Startup
     {
@@ -25,17 +26,11 @@ namespace calendarDDD
             services.AddServerSideBlazor();
 
             //DbConnection
-            services.AddDbContext<ProductDbContext>(options =>
+            services.AddDbContext<MyContext>(options =>
             {
-                options.UseSqlite("Data Source = Products.db");
+                options.UseSqlite("Data Source = MyDb.db");
             });
             services.AddScoped<ProductRepository>();
-
-
-            services.AddDbContext<UserDbContext>(options =>
-            {
-                options.UseSqlite("Data Source = Users.db");
-            });
             services.AddScoped<UserRepository>();
 
         }

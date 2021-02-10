@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>calendarDDD.Domain.Entities</AssemblyName>
+    <RootNamespace>calendarDDD.Domain.Entities</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

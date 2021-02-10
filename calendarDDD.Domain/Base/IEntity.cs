@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace calendarDDD.Domain.Interfaces
+namespace calendarDDD.Domain.Entities.Base
 {
     public interface IEntity
     {

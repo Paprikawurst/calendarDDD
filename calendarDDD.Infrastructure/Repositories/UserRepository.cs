@@ -1,17 +1,19 @@
-﻿using calendarDDD.Domain.AggregateModels.UserAggregate;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using calendarDDD.Domain.Entities.Entities;
+using calendarDDD.Infrastructure.Context;
+using calendarDDD.Infrastructure.Interfaces.Repository;
+using Microsoft.EntityFrameworkCore;
 
-namespace calendarDDD.Infrastructure
+namespace calendarDDD.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        UserDbContext dbContext;
+        MyContext dbContext;
 
-        public void UserServices(UserDbContext dbContext)
+        public void UserServices(MyContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -22,7 +24,7 @@ namespace calendarDDD.Infrastructure
             return await dbContext.UserEntity.ToListAsync();
         }
 
-        /// This method add a new user to the DbContext and saves it
+        /// This method add a new user to the MyContext and saves it
         public async Task<UserEntity> AddProductAsync(UserEntity user)
         {
             try
@@ -55,7 +57,7 @@ namespace calendarDDD.Infrastructure
             return user;
         }
 
-        /// This method removes an existing user from the DbContext and saves it
+        /// This method removes an existing user from the MyContext and saves it
         public async Task DeleteUserAsync(UserEntity user)
         {
             try

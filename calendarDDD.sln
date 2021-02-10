@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "calendarDDD.Web", "calendarDDD\calendarDDD.Web.csproj", "{CD34D028-3E3A-4C18-A666-723CDE8C0895}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "calendarDDD.Domain", "calendarDDD.Domain\calendarDDD.Domain.csproj", "{F6A52ACA-961A-497D-AF27-CF14D9D05E1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "calendarDDD.Domain.Entities", "calendarDDD.Domain\calendarDDD.Domain.Entities.csproj", "{F6A52ACA-961A-497D-AF27-CF14D9D05E1E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "calendarDDD.Domain.Shared", "calendarDDD.Domain.Shared\calendarDDD.Domain.Shared.csproj", "{21D55373-69AF-407C-8DF9-0DAF4D312CEF}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "calendarDDD.Application.Con
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F2484F9B-163F-42BE-8624-C181234E9FCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "calendarDDD.Tests", "calendarDDD.Tests\calendarDDD.Tests.csproj", "{B2625259-85CE-4D50-A429-A4FFB3BA08EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "calendarDDD.Tests", "calendarDDD.Tests\calendarDDD.Tests.csproj", "{B2625259-85CE-4D50-A429-A4FFB3BA08EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

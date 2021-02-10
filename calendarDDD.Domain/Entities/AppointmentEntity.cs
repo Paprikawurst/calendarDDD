@@ -1,9 +1,8 @@
 ﻿using System;
-using calendarDDD.Domain.AggregateModels.UserAggregate;
-using calendarDDD.Domain.Interfaces;
+using calendarDDD.Domain.Entities.Base;
 using calendarDDD.Domain.Shared;
 
-namespace calendarDDD.Domain.AggregateModels.CalendarAggregate
+namespace calendarDDD.Domain.Entities.Entities
 { 
     public class AppointmentEntity : IEntity
     {
