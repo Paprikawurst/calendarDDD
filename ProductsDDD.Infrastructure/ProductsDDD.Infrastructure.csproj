@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -18,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProductsDDD.Domain.Models\ProductsDDD.Domain.Models.csproj" />
     <ProjectReference Include="..\ProductsDDD.Domain\ProductsDDD.Domain.Entities.csproj" />
+    <ProjectReference Include="..\ProductsDDD.Infrastructure.Contracts\ProductsDDD.Infrastructure.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

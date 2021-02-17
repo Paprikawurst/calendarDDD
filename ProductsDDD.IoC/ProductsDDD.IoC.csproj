@@ -2,13 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>ProductsDDD.Application</AssemblyName>
-    <RootNamespace>ProductsDDD.Application</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ProductsDDD.Application.Contracts\ProductsDDD.Application.Contracts.csproj" />
+    <ProjectReference Include="..\ProductsDDD.Application\ProductsDDD.Application.csproj" />
     <ProjectReference Include="..\ProductsDDD.Infrastructure.Contracts\ProductsDDD.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\ProductsDDD.Infrastructure\ProductsDDD.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

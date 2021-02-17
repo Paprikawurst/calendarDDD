@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductsDDD.Domain.Entities.Entities;
-using ProductsDDD.Infrastructure.Interfaces.Repository;
+using ProductsDDD.Infrastructure.Contracts;
 
 namespace ProductsDDD.Infrastructure.Context
 {
-    public class MyContext : Microsoft.EntityFrameworkCore.DbContext, IProductRepository
+    public class MyContext : Microsoft.EntityFrameworkCore.DbContext
     {
         public MyContext(DbContextOptions<MyContext> options)
                 : base(options)

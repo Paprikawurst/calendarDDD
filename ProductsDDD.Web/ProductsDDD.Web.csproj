@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -15,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProductsDDD.Infrastructure\ProductsDDD.Infrastructure.csproj" />
+    <ProjectReference Include="..\ProductsDDD.IoC\ProductsDDD.IoC.csproj" />
+    <ProjectReference Include="..\ProductsDDD.Models\ProductsDDD.Models.csproj" />
   </ItemGroup>
 
 </Project>

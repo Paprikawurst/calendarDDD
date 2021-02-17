@@ -4,15 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProductsDDD.Domain.Entities.Entities;
+using ProductsDDD.Domain.Models;
 using ProductsDDD.Infrastructure.Context;
-using ProductsDDD.Infrastructure.Interfaces.Repository;
+using ProductsDDD.Infrastructure.Contracts;
+using ProductsDDD.Infrastructure.Contracts.Base;
 
 namespace ProductsDDD.Infrastructure.Repositories
 {       
     //hieß vorher ProductServices
     public class ProductRepository : IProductRepository
     {
-        private Context.MyContext _myContext;
+        private MyContext _myContext;
 
         public ProductRepository(MyContext myContext)
         {
@@ -20,51 +22,50 @@ namespace ProductsDDD.Infrastructure.Repositories
         }
 
         /// This method returns the list of product
-        public async Task<List<ProductEntity>> GetProductAsync()
+        public async Task<IEnumerable<ProductAggregate>> GetAllAsync()
         {
-            return await _myContext.ProductEntity.ToListAsync();
+            var list = await _myContext.ProductEntity.ToListAsync();
+            return list.Select(CreateAggregate);
+        }
+
+        private async Task<ProductEntity> GetProductEntityAsync(Guid id)
+        {
+            var item = await _myContext.ProductEntity.FirstOrDefaultAsync(x => x.Id == id);
+            return item;
+        }
+        public async Task<ProductAggregate> GetAsync(Guid id)
+        {
+            var item = await GetProductEntityAsync(id);
+            if (item == null) return null;
+            return CreateAggregate(item);
+        }
+
+        private ProductAggregate CreateAggregate(ProductEntity entity)
+        {
+            return new ProductAggregate(entity);
         }
 
         /// This method add a new product to the MyContext and saves it
-        public async Task<ProductEntity> AddProductAsync(ProductEntity product)
+        public async Task<ProductAggregate> AddAsync(ProductEntity product)
         {
             try
             {
                 _myContext.ProductEntity.Add(product);
                 await _myContext.SaveChangesAsync();
+                return CreateAggregate(product);
             }
             catch (Exception)
             {
                 throw;
             }
-            return product;
+            return CreateAggregate(product);
         }
-
-        /// This method update and existing product and saves the changes
-        public async Task<ProductEntity> UpdateProductAsync(ProductEntity product)
+        public async Task DeleteAsync(ProductAggregate product)
         {
             try
             {
-                var productExist = _myContext.ProductEntity.FirstOrDefault(p => p.Id == product.Id);
-                if (productExist != null)
-                {
-                    _myContext.Update(product);
-                    await _myContext.SaveChangesAsync();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return product;
-        }
-
-        /// This method removes and existing product from the MyContext and saves it
-        public async Task DeleteProductAsync(ProductEntity product)
-        {
-            try
-            {
-                _myContext.ProductEntity.Remove(product);
+                var entity = await this.GetProductEntityAsync(product.Id);
+                _myContext.ProductEntity.Remove(entity);
                 await _myContext.SaveChangesAsync();
             }
             catch (Exception)
@@ -72,6 +73,25 @@ namespace ProductsDDD.Infrastructure.Repositories
                 throw;
             }
         }
+
+        /// This method update and existing product and saves the changes
+        //public async Task<ProductEntity> UpdateProductAsync(ProductEntity product)
+        //{
+        //    try
+        //    {
+        //        var productExist = _myContext.ProductEntity.FirstOrDefault(p => p.Id == product.Id);
+        //        if (productExist != null)
+        //        {
+        //            _myContext.Update(product);
+        //            await _myContext.SaveChangesAsync();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    return product;
+        //}
     }
 }
 
